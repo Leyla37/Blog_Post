@@ -1,0 +1,9 @@
+<!-- blog/templates/blog/blog_detail.html -->
+<h2>{{ object.title }}</h2>
+<p><strong>Author:</strong> {{ object.author }}</p>
+<p><strong>Date:</strong> {{ object.date }}</p>
+<p>{{ object.content }}</p>
+{% if object.image %}
+    <img src="{{ object.image.url }}" alt="{{ object.title }}">
+{% endif %}
+<a href="{% url 'blog_list' %}">Back to list</a>

@@ -1,0 +1,43 @@
+{% load static %}
+<!-- blog/templates/blog/blog_list.html -->
+<h1>Blog Posts</h1>
+<a href="{% url 'blog_create' %}">Create New Post</a>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'blog_list' %}">
+    <input type="text" name="q" placeholder="Search by title or author" value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    {% for post in page_obj %}
+        <li>
+            <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a> by {{ post.author }}
+            - <a href="{% url 'blog_update' post.pk %}">Edit</a> 
+            - <a href="{% url 'blog_delete' post.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+

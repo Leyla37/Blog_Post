@@ -1,0 +1,8 @@
+<!-- blog/templates/blog/blog_confirm_delete.html -->
+<h2>Are you sure you want to delete this post?</h2>
+<p>{{ object.title }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'blog_list' %}">Cancel</a>
+</form>

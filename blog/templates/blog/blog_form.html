@@ -1,0 +1,19 @@
+<!-- blog/templates/blog/blog_form.html -->
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<h2>{% if form.instance.pk %}Edit{% else %}New{% endif %} Post</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'blog_list' %}">Cancel</a>
+<script>
+    flatpickr("input[type='date']", {
+        dateFormat: "Y-m-d",
+    });
+</script>
